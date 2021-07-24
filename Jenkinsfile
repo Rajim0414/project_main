@@ -3,6 +3,7 @@ pipeline {
      registry = "rajidocker2021/project"
      registryCredential = 'DOCKER_HUB_CREDENTIALS'
      dockerImage = ''
+     BUILD_NUMBER = 'Latest'
   }
   agent any
   stages {
