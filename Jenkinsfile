@@ -1,7 +1,7 @@
 pipeline {
   environment {
      registry = "rajidocker2021/project"
-     registryCredential = 'docker-hub'
+     registryCredential = 'DOCKER_HUB_CREDENTIALS'
      dockerImage = ''
   }
   agent any
