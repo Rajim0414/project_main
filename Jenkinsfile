@@ -1,9 +1,9 @@
 pipeline {
   environment {
      registry = "rajidocker2021/project"
-     registryCredential = 'DOCKER_HUB_CREDENTIALS'
+     registryCredential = 'dockerhub_ID'
      dockerImage = ''
-     BUILD_NUMBER = 'Latest'
+     //BUILD_NUMBER = 'Latest'
   }
   agent any
   stages {
@@ -12,7 +12,8 @@ pipeline {
          steps {
             echo 'Building Docker Image'
             script {
-                dockerImage = docker.build registry + "$BUILD_NUMBER"
+            //    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                  dockerImage = docker.build registry
             }
          }
     }
@@ -21,7 +22,7 @@ pipeline {
             echo 'Pushing Docker Image'
             script {
                docker.withRegistry( '', registryCredential ) {
-               dokcerImage.push("$BUILD_NUMBER")
+//               dokcerImage.push("$BUILD_NUMBER")
                dockerImage.push('latest')
               }
             }
@@ -29,7 +30,7 @@ pipeline {
        }
        stage('Clean Up'){
            steps {
-               sh "docker rmi $registry:$BUILD_NUMBER"
+//               sh "docker rmi $registry:$BUILD_NUMBER"
                sh "docker rmi $registry:latest"
             }
        }
@@ -38,7 +39,7 @@ pipeline {
                echo 'Deploying...'
                sh "kubectl apply -f deployment.yaml"
                sh "kubectl apply -f service.yaml"
-               sh "kubectl rollout reestart deployment.apps/calc-deployment"
+               sh "kubectl rollout restart deployment.apps/calc-deployment"
              }
           }
         }
