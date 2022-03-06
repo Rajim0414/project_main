@@ -17,7 +17,7 @@ pipeline {
             }
          }
     }
-      stage('Deploy Image'){
+      stage('Push Image'){
          steps {
             echo 'Pushing Docker Image'
             script {
