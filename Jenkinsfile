@@ -22,6 +22,16 @@ pipeline {
            dockerImage = docker.build registry
 }
 }
+
+}   
+
+    stage('Creating container with project image to deploy'){
+       steps {
+          echo 'Deploy project image through container'
+
+          sh 'docker run -dt --name chinna_proj_cont mainproject_chinna'
+}
+
 }
 
        
