@@ -25,6 +25,22 @@ pipeline {
 
 }   
 
+    stage('Remove or cleanup old containers') {
+        steps {
+           echo "Remove old container"
+
+           sh 'docker stop chinna_proj_cont'
+           sh 'dockeer rm chinna_proj_cont'
+
+}
+}
+
+
+
+
+
+
+
     stage('Creating container with project image to deploy'){
        steps {
           echo 'Deploy project image through container'
@@ -33,6 +49,9 @@ pipeline {
 }
 
 }
+
+     
+
 
        
 }    
