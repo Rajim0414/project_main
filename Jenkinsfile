@@ -30,7 +30,7 @@ pipeline {
            echo "Remove old container"
 
            sh 'docker stop chinna_proj_cont'
-           sh 'dockeer rm chinna_proj_cont'
+           sh 'docker rm chinna_proj_cont'
 
 }
 }
