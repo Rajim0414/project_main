@@ -1,4 +1,7 @@
 pipeline {
+   environment {
+      registry = "rajidocker2021/mainproject_chinna"
+}
   agent any
   stages {
      stage('Checkout devops proj') {
@@ -10,6 +13,17 @@ pipeline {
             sh "ls -lat"
         }
     } 
+    
+    stage('Building Docker Project image') {
+        steps { 
+           echo 'Building docker image'
+            
+           script {
+           dockerImage = docker.build registry
+}
+}
+}
+
        
 }    
 } 
