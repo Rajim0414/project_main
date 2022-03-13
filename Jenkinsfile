@@ -29,7 +29,7 @@ pipeline {
        steps {
           echo 'Deploy project image through container'
 
-          sh 'docker run -dt --name chinna_proj_cont rajidocker2021/mainproject_chinna'
+          sh 'docker run -dt --name chinna_proj_cont -p 9090:80 rajidocker2021/mainproject_chinna'
 }
 
 }
